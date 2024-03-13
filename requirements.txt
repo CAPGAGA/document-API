@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+databases[postgresql]
+asyncpg
+httpx
+pytest
+pytest_asyncio
+requests
