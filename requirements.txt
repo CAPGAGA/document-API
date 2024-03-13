@@ -6,3 +6,4 @@ httpx
 pytest
 pytest_asyncio
 requests
+flake8
