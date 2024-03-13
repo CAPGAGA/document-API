@@ -22,8 +22,8 @@ jobs:
         docker-compose down -v --remove-orphans
         docker-compose up -d
     - name: Lint with flake8
-      run: docker-compose exec web /bin/sh -c 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
+      run: docker-compose exec -T  web /bin/sh -c 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
     - name: Test with pytest
-      run: docker-compose exec web /bin/sh -c 'pytest'
+      run: docker-compose exec -T  web /bin/sh -c 'pytest'
 
         
