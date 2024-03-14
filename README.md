@@ -108,7 +108,6 @@ success response example:
     "email": "newcool@user.com",
     "hashed_password": "cooluserpassyeahhased"
   },
-  "token": "bTdKFUDGrRCyDBVM"
 }
 ```
 
