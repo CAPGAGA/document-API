@@ -31,7 +31,6 @@ async def get_user_by_token(db: async_session, token: str):
 
 async def edit_user(db: async_session, user: schemas.UserEdit):
     fake_hashed_password = user.password + "yeahhased"
-    user_token = ''.join(random.choice(string.ascii_letters) for i in range(16))
     user.password = fake_hashed_password
     async with db as session:
         q = select(models.User).where(models.User.user_token == user.user_token)
@@ -41,14 +40,13 @@ async def edit_user(db: async_session, user: schemas.UserEdit):
             setattr(db_user, var, value) if value else None
         await session.commit()
         await session.refresh(db_user)
-    return {'user': db_user, 'token': user_token}
+    return {'user': db_user}
 
 async def delete_user(db: async_session, user: schemas.UserDelete):
     async with db as session:
         q = select(models.User).where(models.User.user_token == user.user_token)
         db_user = await session.execute(q)
         db_user = db_user.scalars().first()
-
         await session.delete(db_user)
         await session.commit()
     return None

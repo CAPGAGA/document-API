@@ -41,6 +41,5 @@ async def delete_document(document: schemas.DocumentDelete, db: Session = Depend
     db_user = await crud.get_user_by_token(db, token=document.user_token)
     if db_user is None:
         raise HTTPException(status_code=404, detail='User with that token is not found')
-
     response = await crud.delete_document(db, document)
     return response
